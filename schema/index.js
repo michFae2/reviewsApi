@@ -12,7 +12,7 @@ extend type Attendee @key(fields: "attendeeId") {
   reviewsByAttendee: [Review!]
 }
 
-type Review {
+type Review @key(fields: "reviewId") {
   reviewId: ID!
   comment: String!
   rating: Int!
@@ -22,7 +22,7 @@ type Review {
 
 type Query {
   getReviews: [Review]
-  getReviewById(reviewId: ID!): Review
+  getReviewById(reviewId: ID!): Review # Set to nullable since we will return null if review doesn't exist
 }
   
 `;

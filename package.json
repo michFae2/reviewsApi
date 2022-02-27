@@ -4,20 +4,22 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "echo \"No tests currently implemented\" && exit 1",
     "start": "babel-node index.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@babel/core": "^7.9.6",
-    "@babel/node": "^7.8.7",
-    "@babel/plugin-proposal-class-properties": "^7.8.3",
-    "@babel/preset-env": "^7.9.6"
+    "@babel/core": "^7.17.5",
+    "@babel/node": "^7.16.8",
+    "@babel/plugin-proposal-class-properties": "^7.16.7",
+    "@babel/preset-env": "^7.16.11",
+    "@apollo/rover":"^0.4.3"
   },
   "dependencies": {
-    "@apollo/federation": "^0.16.0",
-    "apollo-server": "^2.13.1"
+    "@apollo/federation": "^0.35.1",
+    "apollo-server": "^3.6.3",
+    "@apollo/subgraph": "^0.3.1"
   }
 }

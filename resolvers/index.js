@@ -29,14 +29,18 @@ export default {
       const attendeeId = reviewIdToAttendeeId[parent.reviewId];
       return { __typename: "Attendee", attendeeId: attendeeId };
     },
+
+    // Reference resolver - used by services querying review entities
+    __resolveReference(parent) {
+      // RETURN the review with the same reviewId as parent.reviewId
+      return reviews.find((review) => review.reviewId === parent.reviewId);
+    }
   },
   Attendee: {
     reviewsByAttendee(parent) {
-      // RETURN a list of review written by attendee with attendeeId parent.attendeeId
-      const reviewId = Object.keys(reviewIdToAttendeeId).find(reviewId => reviewIdToAttendeeId[reviewId].includes(parent.attendeeId));
-      // get the index number of the review so we can index into the reviews list
-      const reviewNumber = Number(reviewId.match(/\d+/));
-      return reviews[reviewNumber];
+      // RETURN a list of reviews written by attendee with attendeeId parent.attendeeId
+      const reviewIds = Object.keys(reviewIdToAttendeeId).filter(reviewId => reviewIdToAttendeeId[reviewId].includes(parent.attendeeId));
+      return reviews.filter(review => reviewIds.includes(review.reviewId));
     }
   },
   Event: {

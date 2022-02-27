@@ -4,17 +4,17 @@
 */
 
 import { ApolloServer } from 'apollo-server';
-import { buildFederatedSchema } from '@apollo/federation';
 
 import resolvers from "./resolvers";
 import typeDefs from './schema'; 
 
+const { buildSubgraphSchema } = require('@apollo/subgraph');
+
 // Set port number
 const { PORT = 5003 } = process.env;
 
-// Initialize an Apollo Server instance, with a federated schema
 const server = new ApolloServer({
-  schema: buildFederatedSchema([{ typeDefs, resolvers }])
+  schema: buildSubgraphSchema([{ typeDefs, resolvers }])
 });
 
 // Start the server
